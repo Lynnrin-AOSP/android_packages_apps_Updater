@@ -490,13 +490,8 @@ public class UpdaterService extends Service {
     private void setNotificationTitle(UpdateInfo update) {
         String buildDate = StringGenerator.getDateLocalizedUTC(this,
                 DateFormat.MEDIUM, update.getTimestamp());
-        String buildInfo;
-        if (update.getName().startsWith("Magisk")) {
-            buildInfo = update.getName();
-        } else {
-            buildInfo = getString(R.string.list_build_version_date,
-                    BuildInfoUtils.getBuildVersion(), buildDate);
-        }
+        String buildInfo = getString(R.string.list_build_version_date,
+                update.getVersion(), buildDate);
         mNotificationStyle.setBigContentTitle(buildInfo);
         mNotificationBuilder.setContentTitle(buildInfo);
     }
