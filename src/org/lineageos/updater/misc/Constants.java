@@ -52,4 +52,6 @@ public final class Constants {
     public static final String PREF_INSTALL_PACKAGE_PATH = "install_package_path";
     public static final String PREF_INSTALL_AGAIN = "install_again";
     public static final String PREF_INSTALL_NOTIFIED = "install_notified";
+
+    public static final String HAS_SEEN_INFO_DIALOG = "has_seen_info_dialog";
 }
