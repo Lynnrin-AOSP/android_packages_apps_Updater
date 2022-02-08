@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2020 The LineageOS Project
+ * Copyright (C) 2017 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,7 +52,4 @@ public final class Constants {
     public static final String PREF_INSTALL_PACKAGE_PATH = "install_package_path";
     public static final String PREF_INSTALL_AGAIN = "install_again";
     public static final String PREF_INSTALL_NOTIFIED = "install_notified";
-
-    public static final String UPDATE_RECOVERY_EXEC = "/vendor/bin/install-recovery.sh";
-    public static final String UPDATE_RECOVERY_PROPERTY = "persist.vendor.recovery_update";
 }

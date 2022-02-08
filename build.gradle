@@ -21,11 +21,11 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
 
     defaultConfig {
         minSdkVersion 27
-        targetSdkVersion 29
+        targetSdkVersion 31
     }
 
     lintOptions {
@@ -60,7 +60,7 @@ android {
 dependencies {
     compileOnly fileTree(dir: 'system_libs/', include: ['*.jar'])
 
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.5.0-alpha03'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.preference:preference:1.1.0'
