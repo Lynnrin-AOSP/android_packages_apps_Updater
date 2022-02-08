@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2020 The LineageOS Project
+ * Copyright (C) 2017 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,12 +29,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.SystemProperties;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
@@ -43,7 +41,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -458,7 +455,6 @@ public class UpdatesActivity extends UpdatesListActivity {
         Switch autoDelete = view.findViewById(R.id.preferences_auto_delete_updates);
         Switch dataWarning = view.findViewById(R.id.preferences_mobile_data_warning);
         Switch abPerfMode = view.findViewById(R.id.preferences_ab_perf_mode);
-        Switch updateRecovery = view.findViewById(R.id.preferences_update_recovery);
 
         if (!Utils.isABDevice()) {
             abPerfMode.setVisibility(View.GONE);
@@ -469,34 +465,6 @@ public class UpdatesActivity extends UpdatesListActivity {
         autoDelete.setChecked(prefs.getBoolean(Constants.PREF_AUTO_DELETE_UPDATES, false));
         dataWarning.setChecked(prefs.getBoolean(Constants.PREF_MOBILE_DATA_WARNING, true));
         abPerfMode.setChecked(prefs.getBoolean(Constants.PREF_AB_PERF_MODE, false));
-
-        if (getResources().getBoolean(R.bool.config_hideRecoveryUpdate)) {
-            // Hide the update feature if explicitely requested.
-            // Might be the case of A-only devices using prebuilt vendor images.
-            updateRecovery.setVisibility(View.GONE);
-        } else if (Utils.isRecoveryUpdateExecPresent()) {
-            updateRecovery.setChecked(
-                    SystemProperties.getBoolean(Constants.UPDATE_RECOVERY_PROPERTY, false));
-        } else {
-            // There is no recovery updater script in the device, so the feature is considered
-            // forcefully enabled, just to avoid users to be confused and complain that
-            // recovery gets overwritten. That's the case of A/B and recovery-in-boot devices.
-            updateRecovery.setChecked(true);
-            updateRecovery.setOnTouchListener(new View.OnTouchListener() {
-                private Toast forcedUpdateToast = null;
-
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    if (forcedUpdateToast != null) {
-                        forcedUpdateToast.cancel();
-                    }
-                    forcedUpdateToast = Toast.makeText(getApplicationContext(),
-                            getString(R.string.toast_forced_update_recovery), Toast.LENGTH_SHORT);
-                    forcedUpdateToast.show();
-                    return true;
-                }
-            });
-        }
 
         new AlertDialog.Builder(this)
                 .setTitle(R.string.menu_preferences)
@@ -523,11 +491,6 @@ public class UpdatesActivity extends UpdatesListActivity {
                     if (Utils.isABDevice()) {
                         boolean enableABPerfMode = abPerfMode.isChecked();
                         mUpdaterService.getUpdaterController().setPerformanceMode(enableABPerfMode);
-                    }
-                    if (Utils.isRecoveryUpdateExecPresent()) {
-                        boolean enableRecoveryUpdate = updateRecovery.isChecked();
-                        SystemProperties.set(Constants.UPDATE_RECOVERY_PROPERTY,
-                                String.valueOf(enableRecoveryUpdate));
                     }
                 })
                 .show();
