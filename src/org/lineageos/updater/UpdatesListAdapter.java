@@ -548,9 +548,7 @@ public class UpdatesListAdapter extends RecyclerView.Adapter<UpdatesListAdapter.
     }
 
     private void showInfoDialog() {
-        String messageString = String.format(StringGenerator.getCurrentLocale(mActivity),
-                mActivity.getString(R.string.blocked_update_dialog_message),
-                Utils.getUpgradeBlockedURL(mActivity));
+        String messageString = mActivity.getString(R.string.blocked_update_dialog_message);
         SpannableString message = new SpannableString(messageString);
         Linkify.addLinks(message, Linkify.WEB_URLS);
         if (infoDialog != null) {
