@@ -105,12 +105,12 @@ public class Utils {
             Log.d(TAG, update.getName() + " is older than/equal to the current build");
             return false;
         }
-//        if (update.getName().startsWith("Magisk")) {
-//            String supath = "/system/bin/su";
-//            if (new File(supath).exists()) {
-//                return false;
-//            }
-//        }
+        if (update.getName().startsWith("Magisk")) {
+            String supath = "/system/bin/su";
+            if (new File(supath).exists()) {
+                return false;
+            }
+        }
         return true;
     }
 
