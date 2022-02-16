@@ -21,6 +21,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -104,6 +105,12 @@ public class Utils {
             Log.d(TAG, update.getName() + " is older than/equal to the current build");
             return false;
         }
+//        if (update.getName().startsWith("Magisk")) {
+//            String supath = "/system/bin/su";
+//            if (new File(supath).exists()) {
+//                return false;
+//            }
+//        }
         return true;
     }
 

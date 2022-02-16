@@ -53,8 +53,6 @@
     <string name="menu_export_update">匯出更新</string>
     <string name="menu_show_changelog">顯示更新日誌</string>
     <string name="menu_ab_perf_mode">優先更新過程</string>
-    <string name="menu_update_recovery">更新 Recovery</string>
-    <string name="toast_forced_update_recovery">無法停用此裝置上的 Lineage Recovery 更新。</string>
     <string name="snack_updates_found">發現新的更新</string>
     <string name="snack_no_updates_found">沒有找到新的更新</string>
     <string name="snack_updates_check_failed">更新檢查失敗。請檢查您的網路連線並稍後重試。</string>
@@ -109,4 +107,7 @@
     <string name="new_updates_channel_title">有新的更新</string>
     <string name="ongoing_channel_title">目前下載</string>
     <string name="update_failed_channel_title">更新失敗</string>
+    <string name="install_magisk">安裝 Magisk</string>
+    <string name="install_magisk_info">輕按下載來安裝 Magisk</string>
+    <string name="install_magisk_dialog">您將安裝 Magisk。\n如果您按下 「<xliff:g id="ok">%2$s</xliff:g>」，裝置將重新啟動進入 Recovery 模式並安裝 Magisk。\n注意：這項功能需要相容的 Recovery，否則將需要手動安裝更新。</string>
 </resources>

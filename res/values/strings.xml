@@ -151,4 +151,7 @@
     <string name="update_failed_channel_title">Update failed</string>
 
     <string name="settingslib_config_headlineFontFamily" translatable="false"></string>
+    <string name="install_magisk">Install Magisk</string>
+    <string name="install_magisk_info">Download to install Magisk</string>
+    <string name="install_magisk_dialog">You are about to install Magisk.\n\nIf you press <xliff:g id="ok">%2$s</xliff:g>, the device will restart itself in recovery mode to install it.\n\nNote: This feature requires a compatible Recovery or updates will need to be installed manually.</string>
 </resources>

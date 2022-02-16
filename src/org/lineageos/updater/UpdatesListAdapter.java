@@ -261,10 +261,16 @@ public class UpdatesListAdapter extends RecyclerView.Adapter<UpdatesListAdapter.
                 throw new RuntimeException("Unknown update status");
         }
 
-        String buildDate = StringGenerator.getDateLocalizedUTC(mActivity,
-                DateFormat.LONG, update.getTimestamp());
-        String buildVersion = mActivity.getString(R.string.list_build_version,
-                update.getVersion());
+        String buildDate;
+        String buildVersion;
+        if (update.getName().startsWith("Magisk")) {
+            buildVersion = mActivity.getString(R.string.install_magisk);
+            buildDate = mActivity.getString(R.string.install_magisk_info);
+        } else {
+            buildVersion = mActivity.getString(R.string.list_build_version, update.getVersion());
+            buildDate = StringGenerator.getDateLocalizedUTC(mActivity,
+                    DateFormat.LONG, update.getTimestamp());
+        }
         viewHolder.mBuildDate.setText(buildDate);
         viewHolder.mBuildVersion.setText(buildVersion);
         viewHolder.mBuildVersion.setCompoundDrawables(null, null, null, null);
@@ -457,10 +463,14 @@ public class UpdatesListAdapter extends RecyclerView.Adapter<UpdatesListAdapter.
         UpdateInfo update = mUpdaterController.getUpdate(downloadId);
         int resId;
         try {
-            if (Utils.isABUpdate(update.getFile())) {
-                resId = R.string.apply_update_dialog_message_ab;
+            if (update.getName().startsWith("Magisk")) {
+                resId = R.string.install_magisk_dialog;
             } else {
-                resId = R.string.apply_update_dialog_message;
+                if (Utils.isABUpdate(update.getFile())) {
+                    resId = R.string.apply_update_dialog_message_ab;
+                } else {
+                    resId = R.string.apply_update_dialog_message;
+                }
             }
         } catch (IOException e) {
             Log.e(TAG, "Could not determine the type of the update");
