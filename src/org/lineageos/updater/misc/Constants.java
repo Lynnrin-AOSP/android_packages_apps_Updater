@@ -41,8 +41,8 @@ public final class Constants {
     public static final String PROP_BUILD_DATE = "ro.build.date.utc";
     public static final String PROP_BUILD_VERSION = "ro.build.version.release";
     public static final String PROP_BUILD_VERSION_INCREMENTAL = "ro.build.version.incremental";
-    public static final String PROP_DEVICE = "org.baolong24.device";
-    public static final String PROP_NEXT_DEVICE = "org.baolong24.device";
+    public static final String PROP_DEVICE = "org.lynnrin.device";
+    public static final String PROP_NEXT_DEVICE = "org.lynnrin.device";
     public static final String PROP_RELEASE_TYPE = "ro.lineage.releasetype";
     public static final String PROP_UPDATER_ALLOW_DOWNGRADING = "lineage.updater.allow_downgrading";
     public static final String PROP_UPDATER_URI = "lineage.updater.uri";
